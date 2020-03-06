@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PromantusDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PromantusDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Roles" EntityType="PromantusDBModel.Role" />
+    <EntitySet Name="UserRoleMappings" EntityType="PromantusDBModel.UserRoleMapping" />
+    <EntitySet Name="Users" EntityType="PromantusDBModel.User" />
+    <AssociationSet Name="FK_UserRoleMapping_Role" Association="PromantusDBModel.FK_UserRoleMapping_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRoleMapping" EntitySet="UserRoleMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoleMapping_Users" Association="PromantusDBModel.FK_UserRoleMapping_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRoleMapping" EntitySet="UserRoleMappings" />
+    </AssociationSet>
+    <EntitySet Name="Addresses" EntityType="PromantusDBModel.Address" />
+    <EntitySet Name="Cities" EntityType="PromantusDBModel.City" />
+    <EntitySet Name="Companies" EntityType="PromantusDBModel.Company" />
+    <EntitySet Name="Countries" EntityType="PromantusDBModel.Country" />
+    <EntitySet Name="Departments" EntityType="PromantusDBModel.Department" />
+    <EntitySet Name="Employees" EntityType="PromantusDBModel.Employee" />
+    <EntitySet Name="EmployeeTypes" EntityType="PromantusDBModel.EmployeeType" />
+    <EntitySet Name="Genders" EntityType="PromantusDBModel.Gender" />
+    <EntitySet Name="Locations" EntityType="PromantusDBModel.Location" />
+    <EntitySet Name="Positions" EntityType="PromantusDBModel.Position" />
+    <EntitySet Name="Skills" EntityType="PromantusDBModel.Skill" />
+    <EntitySet Name="States" EntityType="PromantusDBModel.State" />
+    <EntitySet Name="Technologies" EntityType="PromantusDBModel.Technology" />
+    <AssociationSet Name="FK_Address_Location" Association="PromantusDBModel.FK_Address_Location">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_LAddress" Association="PromantusDBModel.FK_Employee_LAddress">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_PAddress" Association="PromantusDBModel.FK_Employee_PAddress">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_State" Association="PromantusDBModel.FK_City_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_City" Association="PromantusDBModel.FK_Location_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Company" Association="PromantusDBModel.FK_Employee_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_State_Country" Association="PromantusDBModel.FK_State_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="State" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Department" Association="PromantusDBModel.FK_Employee_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_EmployeeType" Association="PromantusDBModel.FK_Employee_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Gender" Association="PromantusDBModel.FK_Employee_Gender">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Position" Association="PromantusDBModel.FK_Employee_Position">
+      <End Role="Position" EntitySet="Positions" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Skill_Technology" Association="PromantusDBModel.FK_Skill_Technology">
+      <End Role="Technology" EntitySet="Technologies" />
+      <End Role="Skill" EntitySet="Skills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Technology_Technology" Association="PromantusDBModel.FK_Technology_Technology">
+      <End Role="Technology" EntitySet="Technologies" />
+      <End Role="Technology1" EntitySet="Technologies" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="UserRoleMappings" Relationship="PromantusDBModel.FK_UserRoleMapping_Role" FromRole="Role" ToRole="UserRoleMapping" />
+  </EntityType>
+  <EntityType Name="UserRoleMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Guid" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="PromantusDBModel.FK_UserRoleMapping_Role" FromRole="UserRoleMapping" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="PromantusDBModel.FK_UserRoleMapping_Users" FromRole="UserRoleMapping" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EmpID" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="UserRoleMappings" Relationship="PromantusDBModel.FK_UserRoleMapping_Users" FromRole="User" ToRole="UserRoleMapping" />
+  </EntityType>
+  <Association Name="FK_UserRoleMapping_Role">
+    <End Type="PromantusDBModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="PromantusDBModel.UserRoleMapping" Role="UserRoleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoleMapping">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoleMapping_Users">
+    <End Type="PromantusDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="PromantusDBModel.UserRoleMapping" Role="UserRoleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoleMapping">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Address1" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LocationID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Location" Relationship="PromantusDBModel.FK_Address_Location" FromRole="Address" ToRole="Location" />
+    <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_LAddress" FromRole="Address" ToRole="Employee" />
+    <NavigationProperty Name="Employees1" Relationship="PromantusDBModel.FK_Employee_PAddress" FromRole="Address" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StateID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="State" Relationship="PromantusDBModel.FK_City_State" FromRole="City" ToRole="State" />
+    <NavigationProperty Name="Locations" Relationship="PromantusDBModel.FK_Location_City" FromRole="City" ToRole="Location" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocationId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_Company" FromRole="Company" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="States" Relationship="PromantusDBModel.FK_State_Country" FromRole="Country" ToRole="State" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="EmployeeID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Employee1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GivenName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile1" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Mobile2" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DOJ" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="GenderID" Type="Int32" Nullable="false" />
+    <Property Name="PositionID" Type="Int32" Nullable="false" />
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="SkillSetIDs" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocalAddressID" Type="Guid" Nullable="false" />
+    <Property Name="PermanentAddressID" Type="Guid" Nullable="false" />
+    <Property Name="EmployeeTypeId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Address" Relationship="PromantusDBModel.FK_Employee_LAddress" FromRole="Employee" ToRole="Address" />
+    <NavigationProperty Name="Address1" Relationship="PromantusDBModel.FK_Employee_PAddress" FromRole="Employee" ToRole="Address" />
+    <NavigationProperty Name="Company" Relationship="PromantusDBModel.FK_Employee_Company" FromRole="Employee" ToRole="Company" />
+    <NavigationProperty Name="Department" Relationship="PromantusDBModel.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
+    <NavigationProperty Name="EmployeeType" Relationship="PromantusDBModel.FK_Employee_EmployeeType" FromRole="Employee" ToRole="EmployeeType" />
+    <NavigationProperty Name="Gender" Relationship="PromantusDBModel.FK_Employee_Gender" FromRole="Employee" ToRole="Gender" />
+    <NavigationProperty Name="Position" Relationship="PromantusDBModel.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
+  </EntityType>
+  <EntityType Name="EmployeeType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_EmployeeType" FromRole="EmployeeType" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_Gender" FromRole="Gender" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CityID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Addresses" Relationship="PromantusDBModel.FK_Address_Location" FromRole="Location" ToRole="Address" />
+    <NavigationProperty Name="City" Relationship="PromantusDBModel.FK_Location_City" FromRole="Location" ToRole="City" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="positionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_Position" FromRole="Position" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SkillName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TechnologyID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Technology" Relationship="PromantusDBModel.FK_Skill_Technology" FromRole="Skill" ToRole="Technology" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CountryID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Cities" Relationship="PromantusDBModel.FK_City_State" FromRole="State" ToRole="City" />
+    <NavigationProperty Name="Country" Relationship="PromantusDBModel.FK_State_Country" FromRole="State" ToRole="Country" />
+  </EntityType>
+  <EntityType Name="Technology">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TechnologyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SkillId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Skills" Relationship="PromantusDBModel.FK_Skill_Technology" FromRole="Technology" ToRole="Skill" />
+    <NavigationProperty Name="Technology1" Relationship="PromantusDBModel.FK_Technology_Technology" FromRole="Technology" ToRole="Technology1" />
+    <NavigationProperty Name="Technology2" Relationship="PromantusDBModel.FK_Technology_Technology" FromRole="Technology1" ToRole="Technology" />
+  </EntityType>
+  <Association Name="FK_Address_Location">
+    <End Type="PromantusDBModel.Location" Role="Location" Multiplicity="1" />
+    <End Type="PromantusDBModel.Address" Role="Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_LAddress">
+    <End Type="PromantusDBModel.Address" Role="Address" Multiplicity="1" />
+    <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="LocalAddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_PAddress">
+    <End Type="PromantusDBModel.Address" Role="Address" Multiplicity="1" />
+    <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="PermanentAddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_State">
+    <End Type="PromantusDBModel.State" Role="State" Multiplicity="1" />
+    <End Type="PromantusDBModel.City" Role="City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_City">
+    <End Type="PromantusDBModel.City" Role="City" Multiplicity="1" />
+    <End Type="PromantusDBModel.Location" Role="Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Company">
+    <End Type="PromantusDBModel.Company" Role="Company" Multiplicity="1" />
+    <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_State_Country">
+    <End Type="PromantusDBModel.Country" Role="Country" Multiplicity="1" />
+    <End Type="PromantusDBModel.State" Role="State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Department">
+    <End Type="PromantusDBModel.Department" Role="Department" Multiplicity="1" />
+    <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_EmployeeType">
+    <End Type="PromantusDBModel.EmployeeType" Role="EmployeeType" Multiplicity="1" />
+    <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="EmployeeTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Gender">
+    <End Type="PromantusDBModel.Gender" Role="Gender" Multiplicity="1" />
+    <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Position">
+    <End Type="PromantusDBModel.Position" Role="Position" Multiplicity="1" />
+    <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="PositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Skill_Technology">
+    <End Type="PromantusDBModel.Technology" Role="Technology" Multiplicity="1" />
+    <End Type="PromantusDBModel.Skill" Role="Skill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Technology">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Skill">
+        <PropertyRef Name="TechnologyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Technology_Technology">
+    <End Type="PromantusDBModel.Technology" Role="Technology" Multiplicity="1" />
+    <End Type="PromantusDBModel.Technology" Role="Technology1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Technology">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Technology1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

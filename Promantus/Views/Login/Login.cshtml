@@ -1,0 +1,106 @@
+﻿@model  Promantus.Models.Login
+
+@{
+    Layout = null;
+}
+
+
+
+<head>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/styles/loginpage.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign in</title>
+
+
+
+</head>
+<body>
+    @using (Html.BeginForm("Login", "Login", new { returnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+    {
+
+        <div class="main">
+            <p class="sign" align="center">Sign in</p>
+            <form class="form1">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @Html.TextBoxFor(a => a.UserId, new { id = "username", placeholder = "User Name", @class = "un", onblur = "loadRole(this)" })
+                @Html.ValidationMessageFor(a => a.UserId, "", new { @class = "text-danger" })
+
+                @Html.PasswordFor(a => a.Password, new { placeholder = "Password", @class = "pass" })
+                @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+                <div id="divRole" class="form-inline" style="display:none">
+                    <div class="form-group" style="margin-left:36%;margin-bottom:5%;">
+
+                        @Html.DropDownList("RoleID", Enumerable.Empty<SelectListItem>(), "--Role--", new { @class = "form-control dwRole" })
+
+                    </div>
+                </div>
+                @if (ViewBag.FormToken != null)
+                {
+                    <text><input name="__RequestVerificationToken" type="hidden" value="@ViewBag.FormToken" /></text>
+                }
+                else
+                {
+                    <text>@Html.AntiForgeryToken()</text>
+                }
+                <input type="submit" class="submit" value="Sign in" />
+                @*<p class="forgot" align="center">
+                        <a href="#">Forgot Password?</a>
+                    </p>*@
+                @if (@ViewBag.Message != null)
+                {
+                    <div style="border: 1px solid red">
+
+                        @ViewBag.Message
+                    </div>
+                }
+            </form>
+        </div>
+    }
+</body>
+
+<script type="text/javascript">
+            function loadRole(ev) {
+                var a = ev.value;
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("getrole","Login")",
+                    data: '{username:' + JSON.stringify(a) + '}',
+                    dataType: "Json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (Data) {
+
+                        if (Data.length > 1) {
+                            $("#divRole").show();
+                            var role_ID = $('#RoleID');
+                            $.each(Data, function (index, item) {
+                                role_ID.append($('<option></option>').text(item.RoleName).val(item.Id));
+                            });
+                        }
+                        else {
+                            $("#divRole").hide();
+                            $('#RoleID').empty();
+
+                        }
+
+                    }, error: function (er) {
+                    //Error log
+                    },
+
+                });
+            }
+
+</script>
+<style>
+    dwRole {
+        width: 10%;
+    }
+
+    .main {
+        margin: auto;
+        /*margin:7em auto 7em auto*/
+    }
+</style>

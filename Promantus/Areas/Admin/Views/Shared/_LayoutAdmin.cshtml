@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    @using System.Web.Optimization
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/Poper")
+
+
+    <link href="~/styles/Menu.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <nav>
+        <ul>
+
+            <li><a href="@Url.Action("Home","AdminHome",new { Area = "Admin" })">HOME</a></li>
+            <li>
+                <a>Admin</a>
+                <div>
+                    <ul>
+                        <li><a href="@Url.Action("Home","AdminHome",new { Area = "Admin" })">HOME<span class="caret"></span></a></li>
+
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="@Url.Action("RoleCreate","AdminHome",new { Area = "Admin" })">Role<span class="caret"></span></a></li>
+
+                    </ul>
+                    <ul>
+                        <li><a href="@Url.Action("Position","AdminHome",new { Area = "Admin" })">Position<span class="caret"></span></a></li>
+
+                    </ul>
+                    <ul>
+                        <li><a href="@Url.Action("Department","AdminHome",new { Area = "Admin" })">Department<span class="caret"></span></a></li>
+
+                    </ul>
+                </div>
+
+
+            </li>
+            @*<li>
+                    <a>Users</a>
+                    <div>
+                        <ul>
+                            <li><a href="@Url.Action("Index","Users",new { Area = "Admin" })">Users<span class="caret"></span></a></li>
+                            <li>@Html.ActionLink("User", "Users", new { Area = "Admin" }, null);</li>
+                            <li><a href="products.html#chair">Chair</a></li>
+                            <li><a href="products.html#table">Table</a></li>
+                            <li><a href="cooker.html">Cooker</a></li>
+                        </ul>
+                    </div>
+                </li>*@
+            @*<li>
+                    <a>HR</a>
+                    <div>
+                        <ul>
+                            <li><a href="@Url.Action("Index","Employees",new { Area = "Admin" })">Employees<span class="caret"></span></a></li>
+
+                        </ul>
+                        <ul>
+                            <li><a href="@Url.Action("Index","HR",new { Area = "Admin" })">EmployeeType<span class="caret"></span></a></li>
+
+                        </ul>
+
+                    </div>
+
+                </li>*@
+
+            @*<li><a href="@Url.Action("Index","Employee",new { Area = "Admin" })">HOME</a></li>*@
+            @*<li><a href="about.html">About</a></li>
+                <li><a href="help.html">Help</a></li>*@
+            @if (Session["loginid"] == null)
+            {
+                <li><a href="@Url.Action("logout", "login", new { Area = "" })">Logout</a></li>
+            }
+            else
+            {
+                <li><a href="@Url.Action("logout", "login", new { Area = "" })">Logout</a></li>
+            }
+        </ul>
+    </nav>
+
+    <section>
+
+        <div>
+            @RenderBody()
+        </div>
+
+    </section>
+
+</body>
+</html>

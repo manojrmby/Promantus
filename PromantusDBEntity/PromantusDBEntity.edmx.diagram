@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1d412240ed1747ae910e201e7aa355d9" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="PromantusDBModel.Role" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="PromantusDBModel.UserRoleMapping" Width="2.125" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="PromantusDBModel.User" Width="1.5" PointX="0.75" PointY="5" />
+        <AssociationConnector Association="PromantusDBModel.FK_UserRoleMapping_Role" />
+        <AssociationConnector Association="PromantusDBModel.FK_UserRoleMapping_Users" />
+        <EntityTypeShape EntityType="PromantusDBModel.Address" Width="1.5" PointX="12.375" PointY="7.875" />
+        <EntityTypeShape EntityType="PromantusDBModel.City" Width="1.5" PointX="7.875" PointY="8" />
+        <EntityTypeShape EntityType="PromantusDBModel.Company" Width="1.5" PointX="12.375" PointY="28.125" />
+        <EntityTypeShape EntityType="PromantusDBModel.Country" Width="1.5" PointX="3.375" PointY="8.25" />
+        <EntityTypeShape EntityType="PromantusDBModel.Department" Width="1.5" PointX="12.375" PointY="20.75" />
+        <EntityTypeShape EntityType="PromantusDBModel.Employee" Width="1.5" PointX="14.625" PointY="6.125" />
+        <EntityTypeShape EntityType="PromantusDBModel.EmployeeType" Width="1.5" PointX="12.375" PointY="13.375" />
+        <EntityTypeShape EntityType="PromantusDBModel.Gender" Width="1.5" PointX="12.375" PointY="17" />
+        <EntityTypeShape EntityType="PromantusDBModel.Location" Width="1.5" PointX="10.125" PointY="8" />
+        <EntityTypeShape EntityType="PromantusDBModel.Position" Width="1.5" PointX="12.375" PointY="24.375" />
+        <EntityTypeShape EntityType="PromantusDBModel.Skill" Width="1.5" PointX="8.625" PointY="1.25" />
+        <EntityTypeShape EntityType="PromantusDBModel.State" Width="1.5" PointX="5.625" PointY="8" />
+        <EntityTypeShape EntityType="PromantusDBModel.Technology" Width="1.5" PointX="6.375" PointY="1" />
+        <AssociationConnector Association="PromantusDBModel.FK_Address_Location" />
+        <AssociationConnector Association="PromantusDBModel.FK_Employee_LAddress" />
+        <AssociationConnector Association="PromantusDBModel.FK_Employee_PAddress" />
+        <AssociationConnector Association="PromantusDBModel.FK_City_State" />
+        <AssociationConnector Association="PromantusDBModel.FK_Location_City" />
+        <AssociationConnector Association="PromantusDBModel.FK_Employee_Company" />
+        <AssociationConnector Association="PromantusDBModel.FK_State_Country" />
+        <AssociationConnector Association="PromantusDBModel.FK_Employee_Department" />
+        <AssociationConnector Association="PromantusDBModel.FK_Employee_EmployeeType" />
+        <AssociationConnector Association="PromantusDBModel.FK_Employee_Gender" />
+        <AssociationConnector Association="PromantusDBModel.FK_Employee_Position" />
+        <AssociationConnector Association="PromantusDBModel.FK_Skill_Technology" />
+        <AssociationConnector Association="PromantusDBModel.FK_Technology_Technology" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

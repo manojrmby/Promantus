@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PromantusDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Address" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="LocationID" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateID" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EmployeeID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Employee" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GivenName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SurName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile1" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Mobile2" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="DOB" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DOJ" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="GenderID" Type="int" Nullable="false" />
+    <Property Name="PositionID" Type="int" Nullable="false" />
+    <Property Name="DepartmentID" Type="int" Nullable="false" />
+    <Property Name="CompanyID" Type="int" Nullable="false" />
+    <Property Name="SkillSetIDs" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LocalAddressID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PermanentAddressID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EmployeeTypeId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeType" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CityID" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="positionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SkillName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TechnologyID" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CountryID" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Technology">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TechnologyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SkillId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRoleMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EmpID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedOn" Type="datetime" Nullable="false" />
+    <Property Name="DeletedBy" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Address_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_State">
+    <End Role="State" Type="Self.State" Multiplicity="1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_EmployeeType">
+    <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="EmployeeTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_LAddress">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="LocalAddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_PAddress">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="PermanentAddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Position">
+    <End Role="Position" Type="Self.Position" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="PositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Skill_Technology">
+    <End Role="Technology" Type="Self.Technology" Multiplicity="1" />
+    <End Role="Skill" Type="Self.Skill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Technology">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Skill">
+        <PropertyRef Name="TechnologyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_State_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="State" Type="Self.State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Technology_Technology">
+    <End Role="Technology" Type="Self.Technology" Multiplicity="1" />
+    <End Role="Technology1" Type="Self.Technology" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Technology">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Technology1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoleMapping_Role">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoleMapping">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoleMapping_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoleMapping">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PromantusDBModelStoreContainer">
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Technology" EntityType="Self.Technology" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoleMapping" EntityType="Self.UserRoleMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Address_Location" Association="Self.FK_Address_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Company" Association="Self.FK_Employee_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_EmployeeType" Association="Self.FK_Employee_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeType" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Gender" Association="Self.FK_Employee_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_LAddress" Association="Self.FK_Employee_LAddress">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_PAddress" Association="Self.FK_Employee_PAddress">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Position" Association="Self.FK_Employee_Position">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_City" Association="Self.FK_Location_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Location" EntitySet="Location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Skill_Technology" Association="Self.FK_Skill_Technology">
+      <End Role="Technology" EntitySet="Technology" />
+      <End Role="Skill" EntitySet="Skill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="State" EntitySet="State" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Technology_Technology" Association="Self.FK_Technology_Technology">
+      <End Role="Technology" EntitySet="Technology" />
+      <End Role="Technology1" EntitySet="Technology" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoleMapping_Role" Association="Self.FK_UserRoleMapping_Role">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoleMapping_Users" Association="Self.FK_UserRoleMapping_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,2 @@
+﻿
+$("#LoadingStatus").html("Loading...");

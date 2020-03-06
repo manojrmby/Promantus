@@ -1,0 +1,11 @@
+D:\Projects\Promantus\PromantusDBEntity\bin\Debug\PromantusDBEntity.dll.config
+D:\Projects\Promantus\PromantusDBEntity\bin\Debug\PromantusDBEntity.dll
+D:\Projects\Promantus\PromantusDBEntity\bin\Debug\PromantusDBEntity.pdb
+D:\Projects\Promantus\PromantusDBEntity\bin\Debug\EntityFramework.dll
+D:\Projects\Promantus\PromantusDBEntity\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\Promantus\PromantusDBEntity\bin\Debug\EntityFramework.xml
+D:\Projects\Promantus\PromantusDBEntity\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\Promantus\PromantusDBEntity\obj\Debug\PromantusDBEntity.csprojAssemblyReference.cache
+D:\Projects\Promantus\PromantusDBEntity\obj\Debug\PromantusDBEntity.csproj.CopyComplete
+D:\Projects\Promantus\PromantusDBEntity\obj\Debug\PromantusDBEntity.dll
+D:\Projects\Promantus\PromantusDBEntity\obj\Debug\PromantusDBEntity.pdb
