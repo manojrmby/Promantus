@@ -122,6 +122,9 @@
     <Content Include="Scripts\CustomScript.js" />
     <Content Include="Areas\Admin\Views\AdminHome\Position.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHome\Department.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\Countary.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\Technology.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\Skill.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -38,8 +38,8 @@ namespace PromantusDBEntity
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
-        public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<Technology> Technologies { get; set; }
     }
 }

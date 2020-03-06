@@ -304,14 +304,14 @@ namespace Promantus.Areas.Admin.Controllers
         {
             return View();
         }
-        //List Department
+        //List Countary
         public ActionResult GetCountaryList()
         {
             List<Country> countries = DB.Countries.Where(x => x.IsDeleted == false).ToList();
             return Json(countries, JsonRequestBehavior.AllowGet);
         }
 
-        //Save Department
+        //Save Countary
         public JsonResult SaveCountary(Country model)
         {
             var Result = false;
@@ -370,13 +370,13 @@ namespace Promantus.Areas.Admin.Controllers
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
 
-        //Edit Department
+        //Edit Countary
         public JsonResult GetCountaryByID(int ID)
         {
             Country model = DB.Countries.Where(x => x.IsDeleted == false && x.Id == ID).SingleOrDefault();
             return Json(model, JsonRequestBehavior.AllowGet);
         }
-        //Delete Department
+        //Delete Countary
         public JsonResult DeleteCountaryByID(int ID)
         {
             var Result = false;
@@ -392,7 +392,201 @@ namespace Promantus.Areas.Admin.Controllers
             }
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
-        #endregion
+        #endregion Country
+        #region Technology
+        public ActionResult Technology()
+        {
+            return View();
+        }
+        //List Technology
+        public ActionResult GetTechnologyList()
+        {
+            List<Technology> Tech = DB.Technologies.Where(x => x.IsDeleted == false).ToList();
+            return Json(Tech, JsonRequestBehavior.AllowGet);
+        }
+
+        //Save Technology
+        public JsonResult SaveTechnology(Technology model)
+        {
+            var Result = false;
+            try
+            {
+                if (model.TechnologyName != null)
+                {
+                    using (var con = new PromantusDBEntities())
+                    {
+
+
+                        if (model.Id == 0)
+                        {
+
+                            int max = DB.Technologies.Where(p => p != null)
+                                        .Select(p => p.Id)
+                                        .DefaultIfEmpty()
+                                        .Max();
+                            var m = new Technology()
+                            {
+                                Id = max,
+                                TechnologyName = model.TechnologyName,
+                                CreatedOn = DateTime.UtcNow,
+                                CreatedBy = Guid.Parse(Session["loginid"].ToString())
+                            };
+                            con.Technologies.Add(m);
+                            con.SaveChanges();
+                            Result = true;
+
+                        }
+                        else if (model.Id != 0)
+                        {
+                            Technology Tech = con.Technologies.Where(x => x.IsDeleted == false).SingleOrDefault(x => x.Id == model.Id);
+                            Tech.TechnologyName = model.TechnologyName;
+                            Tech.ModifiedOn = DateTime.UtcNow;
+                            Tech.ModifiedBy = Guid.Parse(Session["loginid"].ToString());
+                            con.SaveChanges();
+                            Result = true;
+
+
+                        }
+
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Result = false;
+                throw ex;
+            }
+            return Json(Result, JsonRequestBehavior.AllowGet);
+        }
+
+        //Edit Technology
+        public JsonResult GetTechnologyByID(int ID)
+        {
+            Technology model = DB.Technologies.Where(x => x.IsDeleted == false && x.Id == ID).SingleOrDefault();
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+        //Delete Technology
+        public JsonResult DeleteTechnologyByID(int ID)
+        {
+            var Result = false;
+            using (var con = new PromantusDBEntities())
+            {
+                Technology model = con.Technologies.SingleOrDefault(x => x.Id == ID);
+                model.IsDeleted = true;
+
+                model.DeletedOn = DateTime.UtcNow;
+                model.DeletedBy = Guid.Parse(Session["loginid"].ToString());
+                con.SaveChanges();
+                Result = true;
+            }
+            return Json(Result, JsonRequestBehavior.AllowGet);
+        }
+        #endregion Technology
+
+        #region Skill's
+        public ActionResult Skill()
+        {
+            ViewBag.Technology = new SelectList(DB.Technologies.Where(x => x.IsDeleted == false), "Id", "TechnologyName");
+            return View();
+        }
+        //List Skill
+        public ActionResult GetSkillList()
+        {
+            List<Skill> Model_List = DB.Skills.Where(x => x.IsDeleted == false).ToList();
+            ViewBag.Technology = new SelectList(DB.Technologies.Where(x => x.IsDeleted == false), "Id", "TechnologyName");
+            return Json(Model_List, JsonRequestBehavior.AllowGet);
+        }
+
+        //Save Skill
+        public JsonResult SaveSkill(Skill model)
+        {
+            var Result = false;
+            try
+            {
+                if (model.SkillName != null)
+                {
+                    using (var con = new PromantusDBEntities())
+                    {
+
+
+                        if (model.Id == 0)
+                        {
+
+                            int max = DB.Skills.Where(p => p != null)
+                                        .Select(p => p.Id)
+                                        .DefaultIfEmpty()
+                                        .Max();
+                            var m = new Skill()
+                            {
+                                Id = max,
+                                SkillName = model.SkillName,
+                                TechnologyID = model.Technology.Id,
+                                CreatedOn = DateTime.UtcNow,
+                                CreatedBy = Guid.Parse(Session["loginid"].ToString())
+                            };
+                            con.Skills.Add(m);
+                            con.SaveChanges();
+                            Result = true;
+
+                        }
+                        else if (model.Id != 0)
+                        {
+                            Skill SK = con.Skills.Where(x => x.IsDeleted == false).SingleOrDefault(x => x.Id == model.Id);
+                            SK.SkillName = model.SkillName;
+                            SK.ModifiedOn = DateTime.UtcNow;
+                            SK.ModifiedBy = Guid.Parse(Session["loginid"].ToString());
+                            con.SaveChanges();
+                            Result = true;
+
+
+                        }
+
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Result = false;
+                throw ex;
+            }
+            ViewBag.Technology = new SelectList(DB.Technologies.Where(x => x.IsDeleted == false), "Id", "TechnologyName");
+            return Json(Result, JsonRequestBehavior.AllowGet);
+        }
+
+        //Edit Skill
+        public JsonResult GetSkillByID(int ID)
+        {
+            ViewBag.Technology = new SelectList(DB.Technologies.Where(x => x.IsDeleted == false), "Id", "TechnologyName");
+            Skill model = DB.Skills.Where(x => x.IsDeleted == false && x.Id == ID).SingleOrDefault();
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+        //Delete Skill
+        public JsonResult DeleteSkillByID(int ID)
+        {
+            var Result = false;
+            using (var con = new PromantusDBEntities())
+            {
+                Skill model = con.Skills.SingleOrDefault(x => x.Id == ID);
+                model.IsDeleted = true;
+
+                model.DeletedOn = DateTime.UtcNow;
+                model.DeletedBy = Guid.Parse(Session["loginid"].ToString());
+                con.SaveChanges();
+                Result = true;
+            }
+            return Json(Result, JsonRequestBehavior.AllowGet);
+        }
+        #endregion Skill's
 
         #endregion Master
     }

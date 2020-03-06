@@ -209,7 +209,6 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TechnologyName" Type="nvarchar" MaxLength="50" />
-    <Property Name="SkillId" Type="int" Nullable="false" />
     <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
@@ -393,18 +392,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Technology_Technology">
-    <End Role="Technology" Type="Self.Technology" Multiplicity="1" />
-    <End Role="Technology1" Type="Self.Technology" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Technology">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Technology1">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_UserRoleMapping_Role">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
@@ -493,10 +480,6 @@
     <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
       <End Role="Country" EntitySet="Country" />
       <End Role="State" EntitySet="State" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Technology_Technology" Association="Self.FK_Technology_Technology">
-      <End Role="Technology" EntitySet="Technology" />
-      <End Role="Technology1" EntitySet="Technology" />
     </AssociationSet>
     <AssociationSet Name="FK_UserRoleMapping_Role" Association="Self.FK_UserRoleMapping_Role">
       <End Role="Roles" EntitySet="Roles" />

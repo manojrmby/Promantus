@@ -22,7 +22,6 @@ namespace PromantusDBEntity
     
         public int Id { get; set; }
         public string TechnologyName { get; set; }
-        public int SkillId { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public System.Guid CreatedBy { get; set; }
         public System.DateTime ModifiedOn { get; set; }
@@ -33,7 +32,5 @@ namespace PromantusDBEntity
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Skill> Skills { get; set; }
-        public virtual Technology Technology1 { get; set; }
-        public virtual Technology Technology2 { get; set; }
     }
 }

@@ -78,7 +78,7 @@ function ConfirmDelete(DeleteID, Deleteurl, LoadUrl) {
             if (Response) {
                 alert("Deleted Successfuly .....!");
                 $("#DeleteConfirm").modal("hide");
-               window.Location.href = LoadUrl;
+                location.reload(true);
             }
 
         }

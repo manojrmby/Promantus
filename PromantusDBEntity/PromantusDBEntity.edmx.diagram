@@ -20,9 +20,7 @@
         <EntityTypeShape EntityType="PromantusDBModel.Gender" Width="1.5" PointX="12.375" PointY="17" />
         <EntityTypeShape EntityType="PromantusDBModel.Location" Width="1.5" PointX="10.125" PointY="8" />
         <EntityTypeShape EntityType="PromantusDBModel.Position" Width="1.5" PointX="12.375" PointY="24.375" />
-        <EntityTypeShape EntityType="PromantusDBModel.Skill" Width="1.5" PointX="8.625" PointY="1.25" />
         <EntityTypeShape EntityType="PromantusDBModel.State" Width="1.5" PointX="5.625" PointY="8" />
-        <EntityTypeShape EntityType="PromantusDBModel.Technology" Width="1.5" PointX="6.375" PointY="1" />
         <AssociationConnector Association="PromantusDBModel.FK_Address_Location" />
         <AssociationConnector Association="PromantusDBModel.FK_Employee_LAddress" />
         <AssociationConnector Association="PromantusDBModel.FK_Employee_PAddress" />
@@ -34,8 +32,9 @@
         <AssociationConnector Association="PromantusDBModel.FK_Employee_EmployeeType" />
         <AssociationConnector Association="PromantusDBModel.FK_Employee_Gender" />
         <AssociationConnector Association="PromantusDBModel.FK_Employee_Position" />
+        <EntityTypeShape EntityType="PromantusDBModel.Skill" Width="1.5" PointX="8.625" PointY="1" />
+        <EntityTypeShape EntityType="PromantusDBModel.Technology" Width="1.5" PointX="6.375" PointY="1.125" />
         <AssociationConnector Association="PromantusDBModel.FK_Skill_Technology" />
-        <AssociationConnector Association="PromantusDBModel.FK_Technology_Technology" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
