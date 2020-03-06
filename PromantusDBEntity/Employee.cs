@@ -43,8 +43,8 @@ namespace PromantusDBEntity
         public virtual Address Address1 { get; set; }
         public virtual Company Company { get; set; }
         public virtual Department Department { get; set; }
+        public virtual Position Position { get; set; }
         public virtual EmployeeType EmployeeType { get; set; }
         public virtual Gender Gender { get; set; }
-        public virtual Position Position { get; set; }
     }
 }

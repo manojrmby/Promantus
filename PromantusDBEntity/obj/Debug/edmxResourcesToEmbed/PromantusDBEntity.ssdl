@@ -107,7 +107,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EmployeeType" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmployeeTypes" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />

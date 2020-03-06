@@ -16,8 +16,6 @@
         <EntityTypeShape EntityType="PromantusDBModel.Country" Width="1.5" PointX="3.375" PointY="8.25" />
         <EntityTypeShape EntityType="PromantusDBModel.Department" Width="1.5" PointX="12.375" PointY="20.75" />
         <EntityTypeShape EntityType="PromantusDBModel.Employee" Width="1.5" PointX="14.625" PointY="6.125" />
-        <EntityTypeShape EntityType="PromantusDBModel.EmployeeType" Width="1.5" PointX="12.375" PointY="13.375" />
-        <EntityTypeShape EntityType="PromantusDBModel.Gender" Width="1.5" PointX="12.375" PointY="17" />
         <EntityTypeShape EntityType="PromantusDBModel.Location" Width="1.5" PointX="10.125" PointY="8" />
         <EntityTypeShape EntityType="PromantusDBModel.Position" Width="1.5" PointX="12.375" PointY="24.375" />
         <EntityTypeShape EntityType="PromantusDBModel.State" Width="1.5" PointX="5.625" PointY="8" />
@@ -29,12 +27,15 @@
         <AssociationConnector Association="PromantusDBModel.FK_Employee_Company" />
         <AssociationConnector Association="PromantusDBModel.FK_State_Country" />
         <AssociationConnector Association="PromantusDBModel.FK_Employee_Department" />
-        <AssociationConnector Association="PromantusDBModel.FK_Employee_EmployeeType" />
-        <AssociationConnector Association="PromantusDBModel.FK_Employee_Gender" />
         <AssociationConnector Association="PromantusDBModel.FK_Employee_Position" />
         <EntityTypeShape EntityType="PromantusDBModel.Skill" Width="1.5" PointX="8.625" PointY="1" />
         <EntityTypeShape EntityType="PromantusDBModel.Technology" Width="1.5" PointX="6.375" PointY="1.125" />
         <AssociationConnector Association="PromantusDBModel.FK_Skill_Technology" />
+        <EntityTypeShape EntityType="PromantusDBModel.EmployeeType" Width="1.5" PointX="12.5" PointY="13.625" />
+        <AssociationConnector Association="PromantusDBModel.FK_Employee_EmployeeType" />
+        <EntityTypeShape EntityType="PromantusDBModel.Gender" Width="1.5" PointX="0.75" PointY="10" />
+        <AssociationConnector Association="PromantusDBModel.FK_Company_Location" />
+        <AssociationConnector Association="PromantusDBModel.FK_Employee_Gender" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

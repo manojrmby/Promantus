@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\PromantusDBEntity\\bin",
+    "\\Promantus\\App_Data",
+    "\\Promantus\\App_Start",
+    "\\Promantus\\Areas",
+    "\\Promantus\\Areas\\Admin",
+    "\\Promantus\\Areas\\Admin\\Controllers",
+    "\\Promantus\\Views"
+  ],
+  "PreviewInSolutionExplorer": false
+}

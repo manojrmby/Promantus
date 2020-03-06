@@ -34,12 +34,12 @@ namespace PromantusDBEntity
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
-        public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<Technology> Technologies { get; set; }
+        public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
+        public virtual DbSet<Gender> Genders { get; set; }
     }
 }

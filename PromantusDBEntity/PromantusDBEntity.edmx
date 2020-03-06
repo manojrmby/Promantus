@@ -40,7 +40,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LocationId" Type="int" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
@@ -112,7 +112,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeType" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeeTypes" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
@@ -126,7 +126,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="GenderType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
@@ -274,6 +274,18 @@
             </Principal>
             <Dependent Role="City">
               <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="LocationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -446,6 +458,10 @@
             <End Role="State" EntitySet="State" />
             <End Role="City" EntitySet="City" />
           </AssociationSet>
+          <AssociationSet Name="FK_Company_Location" Association="Self.FK_Company_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employee_Company" Association="Self.FK_Employee_Company">
             <End Role="Company" EntitySet="Company" />
             <End Role="Employee" EntitySet="Employee" />
@@ -517,8 +533,6 @@
           <EntitySet Name="Countries" EntityType="PromantusDBModel.Country" />
           <EntitySet Name="Departments" EntityType="PromantusDBModel.Department" />
           <EntitySet Name="Employees" EntityType="PromantusDBModel.Employee" />
-          <EntitySet Name="EmployeeTypes" EntityType="PromantusDBModel.EmployeeType" />
-          <EntitySet Name="Genders" EntityType="PromantusDBModel.Gender" />
           <EntitySet Name="Locations" EntityType="PromantusDBModel.Location" />
           <EntitySet Name="Positions" EntityType="PromantusDBModel.Position" />
           <EntitySet Name="States" EntityType="PromantusDBModel.State" />
@@ -554,14 +568,6 @@
             <End Role="Department" EntitySet="Departments" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employee_EmployeeType" Association="PromantusDBModel.FK_Employee_EmployeeType">
-            <End Role="EmployeeType" EntitySet="EmployeeTypes" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Gender" Association="PromantusDBModel.FK_Employee_Gender">
-            <End Role="Gender" EntitySet="Genders" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
           <AssociationSet Name="FK_Employee_Position" Association="PromantusDBModel.FK_Employee_Position">
             <End Role="Position" EntitySet="Positions" />
             <End Role="Employee" EntitySet="Employees" />
@@ -571,6 +577,20 @@
           <AssociationSet Name="FK_Skill_Technology" Association="PromantusDBModel.FK_Skill_Technology">
             <End Role="Technology" EntitySet="Technologies" />
             <End Role="Skill" EntitySet="Skills" />
+          </AssociationSet>
+          <EntitySet Name="EmployeeTypes" EntityType="PromantusDBModel.EmployeeType" />
+          <AssociationSet Name="FK_Employee_EmployeeType" Association="PromantusDBModel.FK_Employee_EmployeeType">
+            <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <EntitySet Name="Genders" EntityType="PromantusDBModel.Gender" />
+          <AssociationSet Name="FK_Company_Location" Association="PromantusDBModel.FK_Company_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Gender" Association="PromantusDBModel.FK_Employee_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Role">
@@ -686,7 +706,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LocationId" Type="Int32" Nullable="false" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
@@ -696,6 +716,7 @@
           <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="DeletedBy" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_Company" FromRole="Company" ToRole="Employee" />
+          <NavigationProperty Name="Location" Relationship="PromantusDBModel.FK_Company_Location" FromRole="Company" ToRole="Location" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -759,39 +780,9 @@
           <NavigationProperty Name="Address1" Relationship="PromantusDBModel.FK_Employee_PAddress" FromRole="Employee" ToRole="Address" />
           <NavigationProperty Name="Company" Relationship="PromantusDBModel.FK_Employee_Company" FromRole="Employee" ToRole="Company" />
           <NavigationProperty Name="Department" Relationship="PromantusDBModel.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
+          <NavigationProperty Name="Position" Relationship="PromantusDBModel.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
           <NavigationProperty Name="EmployeeType" Relationship="PromantusDBModel.FK_Employee_EmployeeType" FromRole="Employee" ToRole="EmployeeType" />
           <NavigationProperty Name="Gender" Relationship="PromantusDBModel.FK_Employee_Gender" FromRole="Employee" ToRole="Gender" />
-          <NavigationProperty Name="Position" Relationship="PromantusDBModel.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
-        </EntityType>
-        <EntityType Name="EmployeeType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DeletedBy" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_EmployeeType" FromRole="EmployeeType" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Gender">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DeletedBy" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_Gender" FromRole="Gender" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -809,6 +800,7 @@
           <Property Name="DeletedBy" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Addresses" Relationship="PromantusDBModel.FK_Address_Location" FromRole="Location" ToRole="Address" />
           <NavigationProperty Name="City" Relationship="PromantusDBModel.FK_Location_City" FromRole="Location" ToRole="City" />
+          <NavigationProperty Name="Companies" Relationship="PromantusDBModel.FK_Company_Location" FromRole="Location" ToRole="Company" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -938,30 +930,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Employee_EmployeeType">
-          <End Type="PromantusDBModel.EmployeeType" Role="EmployeeType" Multiplicity="1" />
-          <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="EmployeeTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Gender">
-          <End Type="PromantusDBModel.Gender" Role="Gender" Multiplicity="1" />
-          <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gender">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="GenderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Employee_Position">
           <End Type="PromantusDBModel.Position" Role="Position" Multiplicity="1" />
           <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
@@ -1014,6 +982,72 @@
             </Principal>
             <Dependent Role="Skill">
               <PropertyRef Name="TechnologyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EmployeeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeTypes" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_EmployeeType" FromRole="EmployeeType" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_Employee_EmployeeType">
+          <End Type="PromantusDBModel.EmployeeType" Role="EmployeeType" Multiplicity="1" />
+          <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="EmployeeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_Gender" FromRole="Gender" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_Company_Location">
+          <End Type="PromantusDBModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="PromantusDBModel.Company" Role="Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Gender">
+          <End Type="PromantusDBModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="GenderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1179,36 +1213,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EmployeeTypes">
-            <EntityTypeMapping TypeName="PromantusDBModel.EmployeeType">
-              <MappingFragment StoreEntitySet="EmployeeType">
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="EmployeeType1" ColumnName="EmployeeType" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Genders">
-            <EntityTypeMapping TypeName="PromantusDBModel.Gender">
-              <MappingFragment StoreEntitySet="Gender">
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="Gender1" ColumnName="Gender" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Locations">
             <EntityTypeMapping TypeName="PromantusDBModel.Location">
               <MappingFragment StoreEntitySet="Location">
@@ -1283,6 +1287,36 @@
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="TechnologyName" ColumnName="TechnologyName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeTypes">
+            <EntityTypeMapping TypeName="PromantusDBModel.EmployeeType">
+              <MappingFragment StoreEntitySet="EmployeeType">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="EmployeeTypes" ColumnName="EmployeeTypes" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="PromantusDBModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="GenderType" ColumnName="GenderType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

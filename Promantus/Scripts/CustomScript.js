@@ -29,6 +29,7 @@ function LoadData(url) {
             }
         },
         error: function (e) {
+            debugger;
 
             alert("Error occured!!")
         }

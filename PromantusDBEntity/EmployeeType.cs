@@ -21,7 +21,7 @@ namespace PromantusDBEntity
         }
     
         public int Id { get; set; }
-        public string EmployeeType1 { get; set; }
+        public string EmployeeTypes { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public System.Guid CreatedBy { get; set; }
         public System.DateTime ModifiedOn { get; set; }

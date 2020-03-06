@@ -18,6 +18,7 @@ namespace PromantusDBEntity
         public Location()
         {
             this.Addresses = new HashSet<Address>();
+            this.Companies = new HashSet<Company>();
         }
     
         public int Id { get; set; }
@@ -34,5 +35,7 @@ namespace PromantusDBEntity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Address> Addresses { get; set; }
         public virtual City City { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Company> Companies { get; set; }
     }
 }

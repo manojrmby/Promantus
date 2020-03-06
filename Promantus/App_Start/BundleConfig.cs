@@ -15,19 +15,17 @@ namespace Promantus.App_Start
                 "~/Scripts/jquery-3.4.1.min.js",
                 "~/Scripts/jquery-ui.js",
                 "~/Scripts/jquery-ui.min.js",
-                 "~/Scripts/bootstrap.min.js"
-
-                ));
+                 "~/Scripts/bootstrap.min.js"));
 
             ScriptBundle Poper = new ScriptBundle("~/bundles/Poper");
-            Poper.Include("~/Scripts/popper.min.js","~/Scripts/tokenize2.js");
+            Poper.Include("~/Scripts/popper.min.js", "~/Scripts/tokenize2.js");
             bundles.Add(Poper);
             bundles.Add(new StyleBundle("~/bundles/css").Include(
-                                                   "~/styles/bootstrap.min.css",
-                                                   "~/styles/bootstrap-glyphicons.css",
-                                                   "~/styles/CustomStyleSheet.css",
-                                                   "~/styles/tokenize2.css"
-                                               ));
+                "~/styles/bootstrap.min.css",
+                "~/styles/bootstrap-glyphicons.css",
+                "~/styles/CustomStyleSheet.css",
+                "~/styles/tokenize2.css"
+                ));
             //ScriptBundle scriptBndl = new ScriptBundle("~/bundles/bootstrap");
 
 

@@ -18,7 +18,6 @@
     <EntitySet Name="Countries" EntityType="PromantusDBModel.Country" />
     <EntitySet Name="Departments" EntityType="PromantusDBModel.Department" />
     <EntitySet Name="Employees" EntityType="PromantusDBModel.Employee" />
-    <EntitySet Name="EmployeeTypes" EntityType="PromantusDBModel.EmployeeType" />
     <EntitySet Name="Genders" EntityType="PromantusDBModel.Gender" />
     <EntitySet Name="Locations" EntityType="PromantusDBModel.Location" />
     <EntitySet Name="Positions" EntityType="PromantusDBModel.Position" />
@@ -55,10 +54,6 @@
       <End Role="Department" EntitySet="Departments" />
       <End Role="Employee" EntitySet="Employees" />
     </AssociationSet>
-    <AssociationSet Name="FK_Employee_EmployeeType" Association="PromantusDBModel.FK_Employee_EmployeeType">
-      <End Role="EmployeeType" EntitySet="EmployeeTypes" />
-      <End Role="Employee" EntitySet="Employees" />
-    </AssociationSet>
     <AssociationSet Name="FK_Employee_Gender" Association="PromantusDBModel.FK_Employee_Gender">
       <End Role="Gender" EntitySet="Genders" />
       <End Role="Employee" EntitySet="Employees" />
@@ -72,6 +67,11 @@
     <AssociationSet Name="FK_Skill_Technology" Association="PromantusDBModel.FK_Skill_Technology">
       <End Role="Technology" EntitySet="Technologies" />
       <End Role="Skill" EntitySet="Skills" />
+    </AssociationSet>
+    <EntitySet Name="EmployeeTypes" EntityType="PromantusDBModel.EmployeeType" />
+    <AssociationSet Name="FK_Employee_EmployeeType" Association="PromantusDBModel.FK_Employee_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+      <End Role="Employee" EntitySet="Employees" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Role">
@@ -260,24 +260,9 @@
     <NavigationProperty Name="Address1" Relationship="PromantusDBModel.FK_Employee_PAddress" FromRole="Employee" ToRole="Address" />
     <NavigationProperty Name="Company" Relationship="PromantusDBModel.FK_Employee_Company" FromRole="Employee" ToRole="Company" />
     <NavigationProperty Name="Department" Relationship="PromantusDBModel.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
-    <NavigationProperty Name="EmployeeType" Relationship="PromantusDBModel.FK_Employee_EmployeeType" FromRole="Employee" ToRole="EmployeeType" />
     <NavigationProperty Name="Gender" Relationship="PromantusDBModel.FK_Employee_Gender" FromRole="Employee" ToRole="Gender" />
     <NavigationProperty Name="Position" Relationship="PromantusDBModel.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
-  </EntityType>
-  <EntityType Name="EmployeeType">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EmployeeType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
-    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
-    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
-    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
-    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
-    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
-    <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_EmployeeType" FromRole="EmployeeType" ToRole="Employee" />
+    <NavigationProperty Name="EmployeeType" Relationship="PromantusDBModel.FK_Employee_EmployeeType" FromRole="Employee" ToRole="EmployeeType" />
   </EntityType>
   <EntityType Name="Gender">
     <Key>
@@ -439,18 +424,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Employee_EmployeeType">
-    <End Type="PromantusDBModel.EmployeeType" Role="EmployeeType" Multiplicity="1" />
-    <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="EmployeeType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Employee">
-        <PropertyRef Name="EmployeeTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Employee_Gender">
     <End Type="PromantusDBModel.Gender" Role="Gender" Multiplicity="1" />
     <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
@@ -515,6 +488,33 @@
       </Principal>
       <Dependent Role="Skill">
         <PropertyRef Name="TechnologyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EmployeeType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeTypes" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedOn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DeletedBy" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="PromantusDBModel.FK_Employee_EmployeeType" FromRole="EmployeeType" ToRole="Employee" />
+  </EntityType>
+  <Association Name="FK_Employee_EmployeeType">
+    <End Type="PromantusDBModel.EmployeeType" Role="EmployeeType" Multiplicity="1" />
+    <End Type="PromantusDBModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="EmployeeTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
