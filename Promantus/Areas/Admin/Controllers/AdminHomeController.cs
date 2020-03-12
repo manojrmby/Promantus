@@ -1,8 +1,10 @@
 ﻿
+using Newtonsoft.Json;
 using Promantus.Models.Employee;
 using PromantusDBEntity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,7 +13,8 @@ namespace Promantus.Areas.Admin.Controllers
 {
     public class AdminHomeController : Controller
     {
-        PromantusDBEntities DB = new PromantusDBEntities();
+        private PromantusDBEntities DB = new PromantusDBEntities();
+
         // GET: Admin/AdminHome
         [Authorize(Roles = "Admin")]
         public ActionResult Home()
@@ -399,14 +402,25 @@ namespace Promantus.Areas.Admin.Controllers
         public ActionResult Skill()
         {
             ViewBag.Technology = new SelectList(DB.Technologies.Where(x => x.IsDeleted == false), "Id", "TechnologyName");
+            //var skills = DB.Skills.Include(s => s.Technology);
             return View();
         }
+
         //List Skill
         public ActionResult GetSkillList()
         {
-            List<Skill> Model_List = DB.Skills.Where(x => x.IsDeleted == false).ToList();
-            //ViewBag.Technology = new SelectList(DB.Technologies.Where(x => x.IsDeleted == false), "Id", "TechnologyName");
-            return Json(Model_List, JsonRequestBehavior.AllowGet);
+            DB.Configuration.ProxyCreationEnabled = false;
+            var skills = DB.Skills.Include(s => s.Technology).Where(s=>s.IsDeleted==false);
+
+
+            ViewBag.Technology = new SelectList(DB.Technologies.Where(x => x.IsDeleted == false), "Id", "TechnologyName");
+
+
+            return Content(JsonConvert.SerializeObject(skills,
+                new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                }), "application/json");
         }
 
         //Save Skill
@@ -445,8 +459,10 @@ namespace Promantus.Areas.Admin.Controllers
                         {
                             Skill SK = con.Skills.Where(x => x.IsDeleted == false).SingleOrDefault(x => x.Id == model.Id);
                             SK.SkillName = model.SkillName;
+                            SK.TechnologyID = model.Technology.Id;
                             SK.ModifiedOn = DateTime.UtcNow;
                             SK.ModifiedBy = Guid.Parse(Session["loginid"].ToString());
+
                             con.SaveChanges();
                             Result = true;
 
@@ -473,7 +489,8 @@ namespace Promantus.Areas.Admin.Controllers
         //Edit Skill
         public JsonResult GetSkillByID(int ID)
         {
-            ViewBag.Technology = new SelectList(DB.Technologies.Where(x => x.IsDeleted == false), "Id", "TechnologyName");
+            DB.Configuration.ProxyCreationEnabled = false;
+            //ViewBag.Technology = new SelectList(DB.Technologies.Where(x => x.IsDeleted == false), "Id", "TechnologyName");
             Skill model = DB.Skills.Where(x => x.IsDeleted == false && x.Id == ID).SingleOrDefault();
             return Json(model, JsonRequestBehavior.AllowGet);
         }

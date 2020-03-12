@@ -35,7 +35,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="LocationId" Type="int" Nullable="false" />
     <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
@@ -121,7 +121,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="GenderType" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
@@ -269,6 +269,18 @@
       </Principal>
       <Dependent Role="City">
         <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Company_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="LocationId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -440,6 +452,10 @@
     <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
       <End Role="State" EntitySet="State" />
       <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Company_Location" Association="Self.FK_Company_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="Company" EntitySet="Company" />
     </AssociationSet>
     <AssociationSet Name="FK_Employee_Company" Association="Self.FK_Employee_Company">
       <End Role="Company" EntitySet="Company" />

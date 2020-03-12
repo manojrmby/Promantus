@@ -17,10 +17,9 @@ function LoadData(url) {
         type: "POST",
         url: url,
         //data: JSON.stringify(Student),
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
+        // dataType: "json",
+        //contentType: 'application/json; charset=utf-8',
         success: function (data) {
-
             if (data.length > 0) {
                 DataBind(data)
             }
@@ -41,7 +40,8 @@ function AddDetails() {
     $("#Mymodel").modal();
 }
 
-function saveData(data,Url) {
+function saveData(data, Url) {
+   
     $.ajax({
         type: "Post",
         url: Url,
@@ -71,7 +71,7 @@ function Delete(ID, Name) {
 }
 
 function ConfirmDelete(DeleteID, Deleteurl, LoadUrl) {
-       $.ajax({
+    $.ajax({
         type: "POST",
         url: Deleteurl,
         data: { "ID": DeleteID },

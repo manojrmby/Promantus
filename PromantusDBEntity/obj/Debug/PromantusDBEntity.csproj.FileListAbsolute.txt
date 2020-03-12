@@ -16,7 +16,6 @@ D:\Manoj\Project\Promantus\PromantusDBEntity\bin\Debug\EntityFramework.dll
 D:\Manoj\Project\Promantus\PromantusDBEntity\bin\Debug\EntityFramework.SqlServer.dll
 D:\Manoj\Project\Promantus\PromantusDBEntity\bin\Debug\EntityFramework.xml
 D:\Manoj\Project\Promantus\PromantusDBEntity\bin\Debug\EntityFramework.SqlServer.xml
-D:\Manoj\Project\Promantus\PromantusDBEntity\obj\Debug\PromantusDBEntity.csprojAssemblyReference.cache
 D:\Manoj\Project\Promantus\PromantusDBEntity\obj\Debug\PromantusDBEntity.csproj.CopyComplete
 D:\Manoj\Project\Promantus\PromantusDBEntity\obj\Debug\PromantusDBEntity.dll
 D:\Manoj\Project\Promantus\PromantusDBEntity\obj\Debug\PromantusDBEntity.pdb

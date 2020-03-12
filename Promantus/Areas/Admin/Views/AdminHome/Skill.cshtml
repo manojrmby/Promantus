@@ -1,6 +1,6 @@
-﻿@model PromantusDBEntity.Skill
+﻿@model  PromantusDBEntity.Skill
 @{
-    ViewBag.Title = "Countary";
+    ViewBag.Title = "Skill";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -15,6 +15,7 @@
             <tr>
                 <th>S.No</th>
                 <th>Skill Name</th>
+                <th>Technology</th>
                 @*<th>Created ON</th>
                     <th>Created By</th>
                     <th>Last Modified On</th>
@@ -43,7 +44,11 @@
             </div>
             <div class="modal-body">
                 <form id="from">
-                    <fieldset id="fSubmit">
+                    <fieldset id="SkillSubmit" name="sk_submit">
+
+
+
+
                         @Html.HiddenFor(m => m.Id)
                         <div class="from-group form-inline">
                             @Html.Label("Skill Name", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -53,10 +58,11 @@
                             @Html.Label("Technology", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @*@Html.DropDownList("Id", (IEnumerable<SelectListItem>)ViewBag.Technology, null, new { @class = "form-control" })*@
-                                @Html.DropDownListFor(m => m.Technology.Id, (SelectList)ViewBag.Technology, "-Select-", new { @id = "Id", @class = "from-control" })
+                                @Html.DropDownListFor(m => m.Technology.Id, (SelectList)ViewBag.Technology, "-Select-", new { @id = "TechnologyName", @class = "from-control" })
                             </div>
 
                         </div>
+
                         <div class="form-group">
                             <div class="col-md-offset-2">
                                 <a href="#" class="btn btn-block btn-primary" name="Save" id="Save">Save</a>
@@ -105,13 +111,10 @@
         var SetData = $("#setList");
         for (var i = 0; i < List.length; i++) {
             var ID = List[i].Id;
-
-            //var CreatedOndt =Date.parse(Date(List[i].CreatedOn));
-            //var str = $.datepicker.formatDate('yy-mm-dd', CreatedOndt);
-
             var Data = "<tr class='row_" +(i+1) + "'>" +
                 "<td>" +(i+1) + "</td>" +
                 "<td>" + List[i].SkillName + "</td>" +
+                "<td>" + List[i].Technology.TechnologyName + "</td>" +
 
                 //"<td>" + Date(List[i].CreatedOn) + "</td>" +
                 //"<td>" + List[i].CreatedBy + "</td>" +
@@ -134,16 +137,16 @@
     $("#Save").click(function () {
 
 
-        var data = $('#fSubmit').serialize();
+        var data = $('#SkillSubmit').serialize();
         var url = '@Url.Action("SaveSkill")';
-        debugger;
+       
 
         saveData(data, url);
 
     })
 
     function Edit(Id) {
-
+        
        $("#ModalTitle").html("Update Skill Name");
          $("#Mymodel").modal();
         $.ajax({
@@ -151,11 +154,13 @@
             url: '@Url.Action("GetSkillByID")',
             data: { "ID": Id },
             success: function (data) {
+                
                 $("#Id").val(data.Id);
                 $("#SkillName").val(data.SkillName);
+                $("#TechnologyName").val(data.TechnologyID);
             },
             error: function (r) {
-
+                alert(" Error" + r);
             }
         })
     }
